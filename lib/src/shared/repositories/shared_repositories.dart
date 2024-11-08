@@ -10,10 +10,9 @@ class SharedRepositories implements ICostumersInterface {
   @override
   Future<CostumersModel?> initialize() async {
     _shared = await SharedPreferences.getInstance();
-
     await firstInit();
-    String? jsonEncode = _shared.getString(_key);
-    return CostumersModel.fromJson(jsonDecode(jsonEncode!));
+    String? data = _shared.getString(_key);
+    return CostumersModel.fromJson(jsonDecode(data!));
   }
 
   @override
