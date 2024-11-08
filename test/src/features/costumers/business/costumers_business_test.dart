@@ -4,7 +4,6 @@ import 'package:cantinho_da_pizza/src/shared/services/costumers_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
 import 'costumers_business_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<ICostumersInterface>()])
