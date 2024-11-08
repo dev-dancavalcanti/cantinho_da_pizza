@@ -69,6 +69,7 @@ class CostumersController extends ChangeNotifier {
         Pizzas(flavor: listFlavors, date: date),
       ],
     ));
+    _db.updateData(listCostumers!);
   }
 
   /// The function must add an existing consumer order
@@ -80,5 +81,6 @@ class CostumersController extends ChangeNotifier {
     Pizzas order = Pizzas(flavor: listFlavors, date: date);
 
     listCostumers!.costumer[index].pizzas!.add(order);
+    _db.updateData(listCostumers!);
   }
 }

@@ -45,7 +45,6 @@ void main() {
     controller.init();
   });
 
-  TestWidgetsFlutterBinding.ensureInitialized();
   group("Costumers Controller", () {
     test(
       'init the list of costumers',
