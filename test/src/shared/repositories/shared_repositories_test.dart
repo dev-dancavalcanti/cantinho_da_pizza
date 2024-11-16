@@ -42,6 +42,7 @@ void main() async {
   });
 
   group('Shared Preferences', () {
+    /// ACTUALLY HAVE 1 COSTUMERS IN DB.
     test('Shared init return CostumersModel', () async {
       await controller.init();
       final result = controller.listCostumers!;
@@ -49,7 +50,7 @@ void main() async {
       expect(result, isInstanceOf<CostumersModel>());
     });
 
-    test('Shared init == json', () async {
+    test('Shared init == db', () async {
       await controller.init();
 
       expect(controller.listCostumers!.costumer.length, 1);
