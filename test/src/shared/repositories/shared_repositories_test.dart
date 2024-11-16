@@ -65,7 +65,7 @@ void main() async {
           date: '08/11',
           listFlavors: ["Calab"]);
       await controller.init();
-      expect(controller.listCostumers!.costumer.length, 2);
+      expect(controller.listCostumers!.costumer.length, 3);
     });
   });
 }
