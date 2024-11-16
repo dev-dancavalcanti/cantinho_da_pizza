@@ -1,10 +1,10 @@
 import 'package:cantinho_da_pizza/src/features/costumers/business/costumers_business.dart';
 import 'package:cantinho_da_pizza/src/features/costumers/presentation/costumers_page.dart';
-import 'package:cantinho_da_pizza/src/features/costumers/presentation/costumers_sign_up.dart';
 import 'package:cantinho_da_pizza/src/shared/repositories/shared_repositories.dart';
 import 'package:cantinho_da_pizza/src/shared/services/costumers_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'src/features/costumers/presentation/costumers_sign_up.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,13 +26,13 @@ class MyApp extends StatelessWidget {
           title: 'Cantinho da Pizza',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
             useMaterial3: true,
           ),
           initialRoute: '/',
           routes: {
             '/': (context) => const CostumersPage(),
-            '/signUp': (context) => const CostumersSignUp()
+            '/signUp': (context) => const CostumersSignUp(),
           },
         ));
   }
