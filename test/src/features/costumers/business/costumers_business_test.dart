@@ -70,7 +70,7 @@ void main() {
           adress: 'Rua Travessa do Abreu',
           date: '20/10',
           listFlavors: ['Manjericao', 'Frango com Cat']);
-      expect(controller.listCostumers!.costumer.length, 3);
+      expect(controller.listCostumers!.costumer.length, 2);
     });
     test('The function must add pizza in the list for add new order', () async {
       await controller.addPizza(text: 'Calabresa');
@@ -80,12 +80,12 @@ void main() {
       await controller.saveOrderOrCostumer(
           name: 'Mario',
           phoneNumber: '612323',
-          adress: 'Rua Travessa do Abreu',
+          adress: 'Rua Travessa do Breus',
           date: '20/10',
           listFlavors: controller.listFlavor);
 
       expect(
-          controller.listCostumers!.costumer[2].pizzas![1].flavor!.length, 3);
+          controller.listCostumers!.costumer[2].pizzas![0].flavor!.length, 3);
     });
   });
 }

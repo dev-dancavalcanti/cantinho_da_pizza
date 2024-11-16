@@ -10,6 +10,7 @@ class SharedRepositories implements ICostumersInterface {
   @override
   Future<CostumersModel?> initialize() async {
     _shared = await SharedPreferences.getInstance();
+
     await firstInit();
     String? data = _shared.getString(_key);
     return CostumersModel.fromJson(jsonDecode(data!));
@@ -21,9 +22,9 @@ class SharedRepositories implements ICostumersInterface {
       Map<String, dynamic> costumerList = {
         "costumer": [
           {
-            "name": "Daniel",
-            "adress": "Rua Travessa do Abreu",
-            "numberPhone": "61 999808449",
+            "name": "Jantas",
+            "adress": "Cantinho da Pizza",
+            "phoneNumber": "61 999808449",
             "pizzas": [
               {
                 "flavor": ["Port", "Calabresa"],
@@ -31,17 +32,6 @@ class SharedRepositories implements ICostumersInterface {
               }
             ]
           },
-          {
-            "name": "Jessica",
-            "adress": "Rua Travessa do Abreu",
-            "numberPhone": "61 999808449",
-            "pizzas": [
-              {
-                "flavor": ["Port", "Calabresa", "Banana Nevada"],
-                "date": "20/10"
-              }
-            ]
-          }
         ]
       };
       await _shared.setString(_key, jsonEncode(costumerList));
