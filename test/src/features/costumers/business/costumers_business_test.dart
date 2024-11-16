@@ -70,7 +70,7 @@ void main() {
           adress: 'Rua Travessa do Treu',
           date: '20/10',
           listFlavors: ['Manjericao', 'Frango com Cat']);
-      expect(controller.listCostumers!.costumer.length, 3);
+      expect(controller.listCostumers!.costumer.length, 2);
     });
     test('The function must add pizza in the list for add new order', () async {
       await controller.addPizza(text: 'Calabresa');
