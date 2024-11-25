@@ -17,7 +17,7 @@ void main() {
         "name": "Daniel",
         "adress": "Rua Travessa do Abreu",
         "numberPhone": "61 999808449",
-        "pizzas": [
+        "orders": [
           {
             "flavor": ["Port", "Calabresa"],
             "date": "20/10"
@@ -28,7 +28,7 @@ void main() {
         "name": "Jessica",
         "adress": "Rua Travessa do AAbreu",
         "numberPhone": "61 999808449",
-        "pizzas": [
+        "orders": [
           {
             "flavor": ["Port", "Calabresa", "Banana Nevada"],
             "date": "20/10"
@@ -61,7 +61,7 @@ void main() {
         date: "31/10",
       );
 
-      expect(controller.listCostumers!.costumer[0].pizzas!.length, 2);
+      expect(controller.listCostumers!.costumer[0].orders!.length, 2);
     });
     test('The function must create a new consumer', () async {
       await controller.saveOrderOrCostumer(
@@ -85,7 +85,7 @@ void main() {
           listFlavors: controller.listFlavor);
 
       expect(
-          controller.listCostumers!.costumer[3].pizzas![0].flavor!.length, 3);
+          controller.listCostumers!.costumer[3].orders![0].flavor!.length, 3);
     });
     test('The funcrtion calculate pizzar of costumers', () {
       controller.counterPizzas(0);

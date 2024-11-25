@@ -10,7 +10,6 @@ class SharedRepositories implements ICostumersInterface {
   @override
   Future<CostumersModel?> initialize() async {
     _shared = await SharedPreferences.getInstance();
-
     await firstInit();
     String? data = _shared.getString(_key);
     return CostumersModel.fromJson(jsonDecode(data!));
@@ -25,7 +24,7 @@ class SharedRepositories implements ICostumersInterface {
             "name": "Jantas",
             "adress": "Cantinho da Pizza",
             "phoneNumber": "61 999808449",
-            "pizzas": [
+            "orders": [
               {
                 "flavor": ["Port", "Calabresa"],
                 "date": "20/10"

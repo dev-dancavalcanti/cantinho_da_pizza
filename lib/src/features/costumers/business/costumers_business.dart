@@ -12,7 +12,6 @@ class CostumersController extends ChangeNotifier {
   List<String> listFlavor = [];
   bool isLoading = false;
   bool isVisible = false;
-
   TextEditingController name = TextEditingController();
   TextEditingController phoneNumber = TextEditingController();
   TextEditingController adress = TextEditingController();
@@ -25,11 +24,16 @@ class CostumersController extends ChangeNotifier {
     await toggleLoading();
   }
 
+  Future<void> toggleLoading() async {
+    isLoading = !isLoading;
+    notifyListeners();
+  }
+
   String counterPizzas(int index) {
     List orders = [];
 
-    for (var i = 0; i < listCostumers!.costumer[index].pizzas!.length; i++) {
-      orders.add(listCostumers!.costumer[index].pizzas![i].flavor!.length);
+    for (var i = 0; i < listCostumers!.costumer[index].orders!.length; i++) {
+      orders.add(listCostumers!.costumer[index].orders![i].flavor!.length);
     }
     final pizzas = orders.reduce((value, element) {
       return value + element;
@@ -45,11 +49,6 @@ class CostumersController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> toggleLoading() async {
-    isLoading = !isLoading;
-    notifyListeners();
-  }
-
   Future<void> removePizza({required int index}) async {
     listFlavor.removeAt(index);
     if (listFlavor.isEmpty) {
@@ -59,13 +58,18 @@ class CostumersController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> clearText() async {
-    listFlavor.clear();
+  Future<void> removeCostumer({required int index}) async {
+    listCostumers!.costumer.removeAt(index);
+    notifyListeners();
+  }
+
+  clearText() {
     adress.clear();
     date.clear();
     name.clear();
     flavor.clear();
     phoneNumber.clear();
+    listFlavor.clear();
   }
 
   /// This function checks whether it will save a new consumer or save an order from an existing consumer
@@ -75,11 +79,11 @@ class CostumersController extends ChangeNotifier {
     required String adress,
     required String date,
     required List<String> listFlavors,
-  }) {
+  }) async {
+    bool saveCostumer = true;
     for (var i = 0; i < listCostumers!.costumer.length; ++i) {
-      if (name == listCostumers!.costumer[i].name ||
-          adress == listCostumers!.costumer[i].adress ||
-          phoneNumber == listCostumers!.costumer[i].phoneNumber) {
+      if (name == listCostumers!.costumer[i].name) {
+        saveCostumer = false;
         return saveOrder(
           listFlavors: listFlavors,
           date: date,
@@ -87,13 +91,15 @@ class CostumersController extends ChangeNotifier {
         );
       }
     }
-    return saveNewCostumer(
-      name: name,
-      phoneNumber: phoneNumber,
-      adress: adress,
-      listFlavors: listFlavors,
-      date: date,
-    );
+    if (saveCostumer) {
+      return saveNewCostumer(
+        name: name,
+        phoneNumber: phoneNumber,
+        adress: adress,
+        listFlavors: listFlavors,
+        date: date,
+      );
+    }
   }
 
   /// The function must add an existing consumer order
@@ -107,12 +113,14 @@ class CostumersController extends ChangeNotifier {
       name: name,
       phoneNumber: phoneNumber,
       adress: adress,
-      pizzas: [
-        Pizzas(flavor: listFlavors, date: date),
+      orders: [
+        Order(flavor: [...listFlavors], date: date),
       ],
     ));
     _db.updateData(listCostumers!);
+    clearText();
     isVisible = false;
+    notifyListeners();
   }
 
   /// The function must add an existing consumer order
@@ -121,11 +129,11 @@ class CostumersController extends ChangeNotifier {
     required String date,
     required int index,
   }) async {
-    Pizzas order = Pizzas(flavor: listFlavors, date: date);
-
-    listCostumers!.costumer[index].pizzas!.add(order);
+    listCostumers!.costumer[index].orders!
+        .add(Order(flavor: [...listFlavors], date: date));
     _db.updateData(listCostumers!);
-
+    clearText();
     isVisible = false;
+    notifyListeners();
   }
 }

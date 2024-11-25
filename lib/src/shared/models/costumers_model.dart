@@ -25,22 +25,22 @@ class Costumer {
   String? name;
   String? adress;
   String? phoneNumber;
-  List<Pizzas>? pizzas;
+  List<Order>? orders;
 
   Costumer(
       {required this.name,
       required this.adress,
       required this.phoneNumber,
-      required this.pizzas});
+      required this.orders});
 
   Costumer.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     adress = json['adress'];
     phoneNumber = json['phoneNumber'];
-    if (json['pizzas'] != null) {
-      pizzas = <Pizzas>[];
-      json['pizzas'].forEach((v) {
-        pizzas!.add(Pizzas.fromJson(v));
+    if (json['orders'] != null) {
+      orders = <Order>[];
+      json['orders'].forEach((v) {
+        orders!.add(Order.fromJson(v));
       });
     }
   }
@@ -50,24 +50,24 @@ class Costumer {
     data['name'] = name;
     data['adress'] = adress;
     data['phoneNumber'] = phoneNumber;
-    if (pizzas != null) {
-      data['pizzas'] = pizzas!.map((v) => v.toJson()).toList();
+    if (orders != null) {
+      data['orders'] = orders!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class Pizzas {
-  List<dynamic>? flavor;
+class Order {
+  List<String>? flavor;
   String? date;
 
-  Pizzas({
+  Order({
     required this.flavor,
     required this.date,
   });
 
-  Pizzas.fromJson(Map<String, dynamic> json) {
-    flavor = json['flavor'];
+  Order.fromJson(Map<String, dynamic> json) {
+    flavor = json['flavor'].cast<String>();
     date = json['date'];
   }
 
