@@ -17,6 +17,7 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
       child: TextField(
+        inputFormatters: [],
         autofocus: false,
         decoration: InputDecoration(
           suffixIconColor: Colors.red,

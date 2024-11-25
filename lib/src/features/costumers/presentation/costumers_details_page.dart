@@ -21,22 +21,22 @@ class ConstumersDetails extends StatelessWidget {
             value: controller,
             child: ListView.builder(
               itemCount:
-                  controller.listCostumers!.costumer[index].pizzas!.length,
-              itemBuilder: (context, i) {
+                  controller.listCostumers!.costumer[index].orders!.length,
+              itemBuilder: (context, numas) {
                 return Card(
                   child: Column(
                     children: [
                       Text(controller
-                          .listCostumers!.costumer[index].pizzas![i].date!),
+                          .listCostumers!.costumer[index].orders![numas].date!),
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
-                        height: 50,
+                        height: 100,
                         child: ListView.builder(
                             itemCount: controller.listCostumers!.costumer[index]
-                                .pizzas![i].flavor!.length,
-                            itemBuilder: (context, ii) {
+                                .orders![numas].flavor!.length,
+                            itemBuilder: (context, i) {
                               return Text(controller.listCostumers!
-                                  .costumer[index].pizzas![i].flavor![ii]);
+                                  .costumer[index].orders![numas].flavor![i]);
                             }),
                       )
                     ],
